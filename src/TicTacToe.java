@@ -177,11 +177,11 @@ public class TicTacToe extends Application {
         // Check game status
         if (isWon(whoseTurn)) {
           showAlert(whoseTurn + " won! The game is over");
-          whoseTurn = ' '; // Game is over
+          resetGame();
         }
         else if (isFull()) {
           showAlert("Draw! The game is over");
-          whoseTurn = ' '; // Game is over
+          resetGame();
         }
         else {
           // Change the turn
@@ -200,6 +200,17 @@ public class TicTacToe extends Application {
     alert.setContentText("Press OK to continue playing");
     alert.showAndWait();
   }
+
+  private void resetGame() {  // method to reset the game
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cell[i][j].token = ' ';
+            cell[i][j].getChildren().clear();
+        }
+    }
+    whoseTurn = 'X';
+    lblStatus.setText("X's turn to play"); // Optional if you still use label
+}
   
   public static void main(String[] args) {
     launch(args);
